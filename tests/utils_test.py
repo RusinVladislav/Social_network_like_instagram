@@ -4,9 +4,10 @@ from utils import *
 
 
 class TestUtils:
+# TODO переписать все через isinstans
 
     def test_get_posts_all(self):
-        assert type(get_posts_all()) == list, 'Функция возвращает не лист'
+        assert isinstance(get_posts_all(), list), 'Функция возвращает не лист'
 
     def test_get_comments_all(self):
         assert type(get_comments_all()) == list, 'Функция возвращает не лист'

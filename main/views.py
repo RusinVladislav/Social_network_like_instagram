@@ -1,7 +1,7 @@
 import logging
 from json import JSONDecodeError
 from flask import Blueprint, render_template, request
-from utils import get_posts_all, get_comments_by_post_id, get_posts_by_id, get_posts_by_user
+from utils import get_posts_all, get_comments_by_post_id, get_posts_by_id, get_posts_by_user, get_posts_by_tag
 
 main_bp = Blueprint('main_bp', __name__, template_folder='templates')
 
@@ -27,16 +27,8 @@ def user_page(username):
     return render_template('user-feed.html', posts_user=posts_user, name=name)
 
 
-# @main_bp.get('/search/')
-# def search_page():
-#     # qwery_arguments
-#     search_qwery = request.args.get('s', '')
-#     logging.info('Выполняю поиск поста')
-#     try:
-#         posts = get_posts_by_word(search_qwery)
-#     except FileNotFoundError:
-#         logging.error('Файл не найден')
-#         return "Файл не найден"
-#     except JSONDecodeError:
-#         return "Файл JSON не валидный"
-#     return render_template('post_list.html', qwery=search_qwery, posts=posts)
+@main_bp.get('/tags/<tag>')
+def tags_page(tag):
+    tag = tag.lower()
+    posts = get_posts_by_tag(tag)
+    return render_template('tag.html', posts=posts, tag=tag)

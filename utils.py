@@ -67,15 +67,14 @@ def get_comments_by_post_id(post_id) -> list[dict]:
     """
 
     wanted_comments = []
-    all_post_id = []
+    last_post_pk = get_posts_all()[-1]['pk']
     comments = get_comments_all()
 
     for comment in comments:
-        all_post_id.append(comment['post_id'])
         if comment['post_id'] == post_id:
             wanted_comments.append(comment)
 
-    if post_id in all_post_id:
+    if post_id <= last_post_pk:
         return wanted_comments
     else:
         raise ValueError(f"Пост с номером {post_id} не найден")
@@ -89,6 +88,21 @@ def search_for_posts(qwery) -> list[dict]:
 
     for post in posts:
         if qwery.lower().strip() in post['content'].lower().strip():
+            wanted_posts.append(post)
+
+    return wanted_posts
+
+
+def get_posts_by_tag(tag) -> list[dict]:
+    """
+    Возвращает посты содержащие определенный tag.
+    """
+
+    wanted_posts = []
+    posts = get_posts_all()
+
+    for post in posts:
+        if f'#{tag.lower().strip()}' in post['content'].lower().strip():
             wanted_posts.append(post)
 
     return wanted_posts

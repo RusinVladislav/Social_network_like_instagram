@@ -6,6 +6,7 @@ def test_app():
     response = app.test_client().get('/api/posts/')
     assert response.status_code == 200, 'Не верный код ответа'
     assert type(response.json) == list, 'Возвращается не список'
+    assert set(response.json[0].keys()) == set(['content', 'likes_count', 'pic', 'pk', 'poster_avatar', 'poster_name', 'views_count'])
     assert response.json[0]['pk'] == 1, 'Ключ pk отсутствует'
     assert response.json[0]["poster_name"] == "leo", 'Ключ poster_name отсутствует'
     assert response.json[0]["poster_avatar"] == "https://randus.org/avatars/w/c1819dbdffffff18.png", 'Ключ poster_avatar отсутствует'

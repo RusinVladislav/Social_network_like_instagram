@@ -1,8 +1,3 @@
-# TODO как правильно организовать работу с заметками (CRUD)
-# TODO что бы появились хештэги куда это вставлять {{ content|safe }} ?
-# TODO как реализовать отображение лайков?
-
-
 from flask import Flask, render_template, send_from_directory
 from main.views import main_bp
 from search.views import search_bp
