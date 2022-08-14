@@ -106,3 +106,25 @@ def get_posts_by_tag(tag) -> list[dict]:
             wanted_posts.append(post)
 
     return wanted_posts
+
+
+def add_bookmarks(post_id):
+    """Добавляет (записывает) новый пост ко всем постам в bookmarks"""
+
+    data = get_posts_by_id(post_id)
+    all_bookmarks = get_bookmarks_all()
+    all_bookmarks.append(data)
+
+    with open(data_bookmarks, 'w', encoding='UTF-8') as file:
+        json.dump(all_bookmarks, file)
+
+
+def del_bookmarks(post_id):
+    """Удаляет пост из bookmarks"""
+
+    data = get_posts_by_id(post_id)
+    all_bookmarks = get_bookmarks_all()
+    all_bookmarks.remove(data)
+
+    with open(data_bookmarks, 'w', encoding='UTF-8') as file:
+        json.dump(all_bookmarks, file)

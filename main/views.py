@@ -1,7 +1,7 @@
 import logging
 from json import JSONDecodeError
 from flask import Blueprint, render_template, request
-from utils import get_posts_all, get_comments_by_post_id, get_posts_by_id, get_posts_by_user, get_posts_by_tag
+from utils import get_posts_all, get_comments_by_post_id, get_posts_by_id, get_posts_by_user, get_posts_by_tag, get_bookmarks_all
 
 main_bp = Blueprint('main_bp', __name__, template_folder='templates')
 
@@ -10,7 +10,8 @@ main_bp = Blueprint('main_bp', __name__, template_folder='templates')
 def main_page():
     qwery = request.args.get('s', '')
     posts = get_posts_all()
-    return render_template('index.html', posts=posts, qwery=qwery)
+    bookmarks = get_bookmarks_all()
+    return render_template('index.html', posts=posts, qwery=qwery, bookmarks=bookmarks)
 
 
 @main_bp.get('/posts/<int:post_id>')
