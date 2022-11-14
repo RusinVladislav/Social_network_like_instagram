@@ -1,0 +1,11 @@
+[Unit]
+Description=Flask app named SKYPROGRAM
+After=network.target
+
+[Service]
+WorkingDirectory=/home/vrusin/course_work_3
+Environment=FLASK_APP=app.py
+ExecStart=/home/vrusin/course_work_3/venv/bin/python -m flask run -h 0.0.0.0
+
+[Install]
+WantedBy=multi-user.target

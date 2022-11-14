@@ -8,7 +8,7 @@ def config(app):
 
     console_handler = logging.StreamHandler()
 
-    api_logger_handler = logging.FileHandler("./log/api.log", 'w')
+    api_logger_handler = logging.FileHandler("./log/api.log", 'a')
     api_logger_handler.setFormatter(api_logger_format)
 
     api_logger.addHandler(console_handler)
