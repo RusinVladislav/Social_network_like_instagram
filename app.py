@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template
 from main.views import main_bp
 from search.views import search_bp
 from bookmarks.views import bookmarks_bp
@@ -8,6 +8,8 @@ from logger import config
 app = Flask(__name__)
 
 config(app)
+
+app.config['JSON_AS_ASCII'] = False
 
 app.register_blueprint(main_bp)
 app.register_blueprint(search_bp)
