@@ -49,7 +49,7 @@ def get_posts_by_user(user_name) -> list[dict]:
 
 def get_posts_by_id(post_id) -> dict:
     """
-    Возвращает посты определенного пользователя по его имени.
+    Возвращает посты по его id.
     Вызывает ошибку ValueError если такого пользователя нет и пустой список, если у пользователя нет постов.
     """
 
@@ -58,6 +58,7 @@ def get_posts_by_id(post_id) -> dict:
     for post in posts:
         if post['pk'] == post_id:
             return post
+    raise ValueError(f"Пост с id {post_id} не найден")
 
 
 def get_comments_by_post_id(post_id) -> list[dict]:
@@ -95,7 +96,7 @@ def search_for_posts(qwery) -> list[dict]:
 
 def get_posts_by_tag(tag) -> list[dict]:
     """
-    Возвращает посты содержащие определенный tag.
+    Возвращает посты содержащие определенный hashtag или пустой список если такой hashtag отсутствует.
     """
 
     wanted_posts = []

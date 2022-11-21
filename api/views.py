@@ -1,4 +1,3 @@
-import logging
 from flask import Blueprint, jsonify
 from utils import get_posts_all, get_posts_by_id
 
