@@ -22,7 +22,7 @@ Social network - analog instagram
 ## Start app
 1. Clone project
    ```
-   git clone https://github.com/AndrewIsaev/Skyprogramm_Social_network.git
+   git clone https://github.com/RusinVladislav/Social_network_like_instagram
 2. Install requirements
    ```
     pip install -r requirements.txt
